@@ -12,11 +12,9 @@ namespace Client
                 client.Connect();
                 while (true)
                 {
-
                     Console.WriteLine(client.GetMsg().ToString());
-
                 }
-
+              
 
                 //client.Disconnect();
             }

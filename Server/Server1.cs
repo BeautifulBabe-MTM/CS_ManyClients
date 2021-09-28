@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
 using Client;
+using System.Diagnostics;
 
 namespace Server
 {
@@ -46,6 +47,15 @@ namespace Server
                 SendMsg1("Connect", clients.Count - 1);
             }
 
+        }
+        public void OpenSS()
+        {
+            Process.Start(
+              new ProcessStartInfo(
+                  @"C:\Program Files\Google\Chrome\Application\chrome.exe",
+                  "" +
+                  " " + "--start-fullscreen")
+              );
         }
         public StringBuilder GetMsg()
         {
