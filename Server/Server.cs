@@ -12,10 +12,12 @@ namespace Server
             Server1 server = new Server1();
             server.StartServer();
             Task.Factory.StartNew(() => server.Connects());
+            Console.WriteLine("Server started...");
             try
             {
                 while (true)
                 {
+                    server.GetMsg();
                     server.SendMsg(Console.ReadLine());
 
                 }
@@ -24,7 +26,6 @@ namespace Server
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                Console.ReadLine();
                 throw;
             }
         }

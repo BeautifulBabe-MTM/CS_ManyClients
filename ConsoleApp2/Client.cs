@@ -12,11 +12,14 @@ namespace Client
                 client.Connect();
                 while (true)
                 {
-                    Console.WriteLine(client.GetMsg().ToString());
+                    //Console.WriteLine(client.GetMsg().ToString());
+                    Console.WriteLine("Enter the browser");
+                    string browser = Console.ReadLine();
+                    client.SendMsg(browser);
+                    string msg = client.GetMsg().ToString();
+                    if(msg.ToLower() == "exit")
+                    Environment.Exit(0);
                 }
-              
-
-                //client.Disconnect();
             }
             catch (Exception ex)
             {

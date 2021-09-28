@@ -10,7 +10,6 @@ namespace Server
 {
     class Server1
     {
-
         private string ipAddr;
         private int port;
         private IPEndPoint ipPoint;
@@ -48,16 +47,7 @@ namespace Server
             }
 
         }
-        public void OpenSS()
-        {
-            Process.Start(
-              new ProcessStartInfo(
-                  @"C:\Program Files\Google\Chrome\Application\chrome.exe",
-                  "" +
-                  " " + "--start-fullscreen")
-              );
-        }
-        public StringBuilder GetMsg()
+        public string GetMsg()
         {
             lock (this.clients)
             {
@@ -70,7 +60,10 @@ namespace Server
                         bytes = clients[i].socket.Receive(data);
                         builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
                     } while (clients[i].socket.Available > 0);
-                return builder;
+
+                if (builder.ToString().ToLower() == "chrome")
+                    Process.Start(new ProcessStartInfo(@"C:\Program Files\Google\Chrome\Application\chrome.exe", "" + " "));         
+                return builder.ToString();
             }
         }
         public void SendMsg1(string message, int index)

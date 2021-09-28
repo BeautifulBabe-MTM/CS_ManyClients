@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
@@ -32,10 +33,6 @@ namespace Client
             data = Encoding.Unicode.GetBytes(sms);
             socket.Send(data);
         }
-        public void Disconnect()
-        {
-            this.socket.Shutdown(SocketShutdown.Both);
-        }
         public StringBuilder GetMsg()
         {
             int bytes = 0;
@@ -46,7 +43,7 @@ namespace Client
                 bytes = socket.Receive(data);
                 stringBuilder.Append(Encoding.Unicode.GetString(data, 0, bytes));
             } while (socket.Available > 0);
-
+            
             return stringBuilder;
         }
     }
